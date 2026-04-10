@@ -1,0 +1,6 @@
+anthropic
+streamlit
+matplotlib
+seaborn
+python-dotenv
+Pillow
