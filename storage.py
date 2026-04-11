@@ -4,15 +4,14 @@ from datetime import datetime
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), "data", "counts.json")
 
-FLAVORS = ["red_grape", "white_grape", "strawberry", "raspberry", "orange", "peach"]
+FLAVORS = ["concord_grape", "strawberry", "white_grape_raspberry", "orange", "white_grape_peach"]
 
 FLAVOR_LABELS = {
-    "red_grape": "Red Grape",
-    "white_grape": "White Grape",
+    "concord_grape": "Concord Grape",
     "strawberry": "Strawberry",
-    "raspberry": "Raspberry",
+    "white_grape_raspberry": "White Grape Raspberry",
     "orange": "Orange",
-    "peach": "Peach",
+    "white_grape_peach": "White Grape Peach",
 }
 
 

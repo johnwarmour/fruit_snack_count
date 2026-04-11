@@ -32,22 +32,21 @@ def encode_image_base64(image_path: str) -> tuple[str, str]:
 
 SYSTEM_PROMPT = """You are an expert at identifying Welch's fruit snack pieces by color and flavor.
 
-Welch's Mixed Fruit snack pieces come in these flavors and colors:
-- red_grape: deep purple/dark red, almost maroon
-- white_grape: light green or pale yellow-green
+This specific bag contains ONLY these five flavors — do not report any other flavors:
+- concord_grape: deep purple/dark red, almost maroon or dark violet
 - strawberry: bright red or pinkish-red
-- raspberry: dark pink or magenta/fuchsia
+- white_grape_raspberry: dark pink or magenta/fuchsia (a blend flavor, appears pink-purple)
 - orange: orange
-- peach: light peach, soft yellow-orange, or yellowish
+- white_grape_peach: light peach, soft yellow-orange, pale yellowish, or cream
 
 When analyzing an image, count every individual fruit snack piece visible. Be thorough and systematic — scan the whole image.
 
-Return ONLY a valid JSON object with exactly these keys: red_grape, white_grape, strawberry, raspberry, orange, peach.
+Return ONLY a valid JSON object with exactly these keys: concord_grape, strawberry, white_grape_raspberry, orange, white_grape_peach.
 Each value must be a non-negative integer representing the count of that flavor.
 Do not include any other text, explanation, or markdown — just the raw JSON object."""
 
 USER_PROMPT = """Count each Welch's fruit snack piece in this image by flavor/color.
-Return only a JSON object with keys: red_grape, white_grape, strawberry, raspberry, orange, peach."""
+Return only a JSON object with keys: concord_grape, strawberry, white_grape_raspberry, orange, white_grape_peach."""
 
 
 def analyze_image(image_path: str) -> tuple[dict, str]:

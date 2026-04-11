@@ -9,12 +9,11 @@ from storage import FLAVORS, FLAVOR_LABELS
 
 # Welch's-inspired color palette (one per flavor, order matches FLAVORS list)
 FLAVOR_COLORS = {
-    "red_grape": "#6B1A1A",
-    "white_grape": "#A8D5A2",
+    "concord_grape": "#4A1A6B",
     "strawberry": "#E8334A",
-    "raspberry": "#C2185B",
+    "white_grape_raspberry": "#C2185B",
     "orange": "#F4831F",
-    "peach": "#FFCA7A",
+    "white_grape_peach": "#FFCA7A",
 }
 
 
