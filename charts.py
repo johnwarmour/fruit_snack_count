@@ -1,6 +1,7 @@
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+plt.rcParams.update({"figure.facecolor": "#FFF8F0", "axes.facecolor": "#FFF8F0"})
 import matplotlib.ticker as ticker
 import seaborn as sns
 from matplotlib.figure import Figure
