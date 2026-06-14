@@ -1,4 +1,5 @@
 import base64
+import io
 import json
 import os
 import re
@@ -18,7 +19,6 @@ def _resize_if_needed(image_path: str) -> bytes:
         if max(w, h) > MAX_DIMENSION:
             scale = MAX_DIMENSION / max(w, h)
             img = img.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
-        import io
         buf = io.BytesIO()
         img.save(buf, format="JPEG", quality=90)
         return buf.getvalue()
