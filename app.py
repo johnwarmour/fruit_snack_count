@@ -35,8 +35,10 @@ with tab_upload:
                     tmp.write(uploaded.getbuffer())
                     tmp_path = tmp.name
 
-                counts, notes = analyze_image(tmp_path)
-                os.unlink(tmp_path)
+                try:
+                    counts, notes = analyze_image(tmp_path)
+                finally:
+                    os.unlink(tmp_path)
 
             st.session_state["pending_counts"] = counts
             st.session_state["pending_filename"] = uploaded.name
