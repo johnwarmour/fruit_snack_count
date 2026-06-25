@@ -92,3 +92,12 @@ def get_sessions() -> list:
 
 def get_grand_total() -> int:
     return load_data()["grand_total"]
+
+
+def get_summary() -> dict:
+    data = load_data()
+    return {
+        "totals": data["totals"],
+        "sessions": data["sessions"],
+        "grand_total": data["grand_total"],
+    }

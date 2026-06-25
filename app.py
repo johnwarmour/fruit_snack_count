@@ -91,9 +91,10 @@ with tab_upload:
 
 # ── Totals tab ────────────────────────────────────────────────────────────────
 with tab_totals:
-    totals = storage.get_totals()
-    grand_total = storage.get_grand_total()
-    session_count = len(storage.get_sessions())
+    summary = storage.get_summary()
+    totals = summary["totals"]
+    grand_total = summary["grand_total"]
+    session_count = len(summary["sessions"])
 
     st.subheader("Cumulative totals")
     col_metric1, col_metric2 = st.columns(2)
