@@ -18,6 +18,13 @@ FLAVOR_COLORS = {
 }
 
 
+def _empty_figure(message: str) -> Figure:
+    fig, ax = plt.subplots()
+    ax.text(0.5, 0.5, message, ha="center", va="center")
+    ax.axis("off")
+    return fig
+
+
 def _active_flavors(totals: dict) -> list[str]:
     """Return only flavors with at least one count."""
     return [f for f in FLAVORS if totals.get(f, 0) > 0]
@@ -26,10 +33,7 @@ def _active_flavors(totals: dict) -> list[str]:
 def pie_chart(totals: dict) -> Figure:
     active = _active_flavors(totals)
     if not active:
-        fig, ax = plt.subplots()
-        ax.text(0.5, 0.5, "No data yet", ha="center", va="center")
-        ax.axis("off")
-        return fig
+        return _empty_figure("No data yet")
 
     values = [totals[f] for f in active]
     labels = [FLAVOR_LABELS[f] for f in active]
@@ -65,10 +69,7 @@ def pie_chart(totals: dict) -> Figure:
 def bar_chart(totals: dict) -> Figure:
     active = sorted(_active_flavors(totals), key=lambda f: totals[f], reverse=True)
     if not active:
-        fig, ax = plt.subplots()
-        ax.text(0.5, 0.5, "No data yet", ha="center", va="center")
-        ax.axis("off")
-        return fig
+        return _empty_figure("No data yet")
 
     total = sum(totals[f] for f in active)
     values = [totals[f] for f in active]
@@ -99,10 +100,7 @@ def bar_chart(totals: dict) -> Figure:
 
 def history_chart(sessions: list) -> Figure:
     if not sessions:
-        fig, ax = plt.subplots()
-        ax.text(0.5, 0.5, "No sessions yet", ha="center", va="center")
-        ax.axis("off")
-        return fig
+        return _empty_figure("No sessions yet")
 
     labels = [s["id"][:10] + "\n" + s["id"][11:19] for s in sessions]
     colors = [FLAVOR_COLORS[f] for f in FLAVORS]
