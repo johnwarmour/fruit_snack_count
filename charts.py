@@ -19,7 +19,8 @@ FLAVOR_COLORS = {
 
 
 def _empty_figure(message: str) -> Figure:
-    fig, ax = plt.subplots()
+    fig = Figure()
+    ax = fig.add_subplot(111)
     ax.text(0.5, 0.5, message, ha="center", va="center")
     ax.axis("off")
     return fig
@@ -40,7 +41,8 @@ def pie_chart(totals: dict) -> Figure:
     colors = [FLAVOR_COLORS[f] for f in active]
     total = sum(values)
 
-    fig, ax = plt.subplots(figsize=(7, 7))
+    fig = Figure(figsize=(7, 7))
+    ax = fig.add_subplot(111)
     wedges, texts, autotexts = ax.pie(
         values,
         labels=None,
@@ -77,7 +79,8 @@ def bar_chart(totals: dict) -> Figure:
     labels = [FLAVOR_LABELS[f] for f in active]
     colors = [FLAVOR_COLORS[f] for f in active]
 
-    fig, ax = plt.subplots(figsize=(8, max(3, len(active) * 0.8)))
+    fig = Figure(figsize=(8, max(3, len(active) * 0.8)))
+    ax = fig.add_subplot(111)
     bars = ax.barh(labels[::-1], values[::-1], color=colors[::-1], edgecolor="white")
 
     for bar, pct in zip(bars, pcts[::-1]):
@@ -105,7 +108,8 @@ def history_chart(sessions: list) -> Figure:
     labels = [s["id"][:10] + "\n" + s["id"][11:19] for s in sessions]
     colors = [FLAVOR_COLORS[f] for f in FLAVORS]
 
-    fig, ax = plt.subplots(figsize=(max(6, len(sessions) * 1.2), 5))
+    fig = Figure(figsize=(max(6, len(sessions) * 1.2), 5))
+    ax = fig.add_subplot(111)
     bottoms = [0] * len(sessions)
 
     for flavor, color in zip(FLAVORS, colors):
