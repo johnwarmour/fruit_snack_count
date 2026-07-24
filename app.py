@@ -144,6 +144,17 @@ with tab_history:
                 if session.get("notes"):
                     st.caption(session["notes"])
 
-                if st.button("Delete this session", key=f"del_{session['id']}"):
-                    storage.delete_session(session["id"])
+                confirm_key = f"confirm_del_{session['id']}"
+                if st.session_state.get(confirm_key):
+                    st.warning("Delete this session? This cannot be undone.")
+                    col_confirm, col_cancel = st.columns(2)
+                    if col_confirm.button("Yes, delete", key=f"del_yes_{session['id']}", type="primary"):
+                        storage.delete_session(session["id"])
+                        del st.session_state[confirm_key]
+                        st.rerun()
+                    if col_cancel.button("Cancel", key=f"del_cancel_{session['id']}"):
+                        del st.session_state[confirm_key]
+                        st.rerun()
+                elif st.button("Delete this session", key=f"del_{session['id']}"):
+                    st.session_state[confirm_key] = True
                     st.rerun()
